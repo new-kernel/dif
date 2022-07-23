@@ -1,0 +1,10 @@
+[package]
+name = "dif"
+version = "0.1.0"
+edition = "2021"
+description = "Device Information File, a library for reading .dif files."
+
+[dependencies]
+
+[features]
+alloc = []
