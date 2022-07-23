@@ -24,7 +24,7 @@ pub struct Dif {
 }
 
 impl Dif {
-    pub const DIF_FIELD_NAMES: &'static [DifFieldNames; 18] = &[
+    pub const DIF_FIELD_NAMES: &'static [DifFieldNames; 19] = &[
         DifFieldNames::None,
         DifFieldNames::DifName,
         DifFieldNames::DeviceName,
@@ -35,14 +35,15 @@ impl Dif {
         DifFieldNames::EnableSerial,
         DifFieldNames::EnableFrameBuffer,
         DifFieldNames::PrintingMethod,
-        DifFieldNames::IrqMethod,
+        DifFieldNames::IrqChip,
         DifFieldNames::EnableDeviceIrqs,
         DifFieldNames::DeviceSpecificKernel,
         DifFieldNames::StartInit,
         DifFieldNames::InitInput,
         DifFieldNames::InitFs,
         DifFieldNames::InitNet,
-        DifFieldNames::ShutdownOnPanic
+        DifFieldNames::ShutdownOnPanic,
+        DifFieldNames::DisableIrqsOnPanic,
     ];
 
     pub const fn empty() -> Self {

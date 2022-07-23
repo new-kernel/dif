@@ -71,7 +71,7 @@ impl DifFieldNames {
             DifFieldNames::EnableSerial => "EnableSerial",
             DifFieldNames::EnableFrameBuffer => "EnableFrameBuffer",
             DifFieldNames::PrintingMethod => "PrintingMethod",
-            DifFieldNames::IrqMethod => "IrqMethod",
+            DifFieldNames::IrqChip => "IrqChip",
             DifFieldNames::EnableDeviceIrqs => "EnableDeviceIrqs",
             DifFieldNames::DeviceSpecificKernel => "DeviceSpecificKernel",
             DifFieldNames::StartInit => "StartInit",
@@ -79,6 +79,7 @@ impl DifFieldNames {
             DifFieldNames::InitFs => "InitFs",
             DifFieldNames::InitNet => "InitNet",
             DifFieldNames::ShutdownOnPanic => "ShutdownOnPanic",
+            DifFieldNames::DisableIrqsOnPanic => "DisableIrqsOnPanic",
         };
     }
 }
