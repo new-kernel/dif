@@ -44,12 +44,12 @@ impl Dif {
     /// read.
     pub const MAX_SIZE: usize = 19;
 
-    pub fn new() -> Self {
+    pub const fn new() -> Self {
         return Dif {
             dif_name: None,
 
             #[cfg(feature = "alloc")]
-            dif_lines: alloc::vec::Vec::with_capacity(Dif::MAX_SIZE),
+            dif_lines: vec![],
 
             #[cfg(not(feature = "alloc"))]
             dif_lines: (
