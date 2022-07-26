@@ -4,10 +4,10 @@
 #[macro_use] extern crate alloc;
 
 pub mod fields;
+pub mod get;
 pub mod parse;
 
 pub use fields::*;
-//use fields::*;
 
 pub struct Dif {
     pub dif_name: Option<&'static str>,
@@ -45,8 +45,6 @@ impl Dif {
     pub const MAX_SIZE: usize = 19;
 
     pub fn new() -> Self {
-        let test = ((DifFieldNames::None, ""), (DifFieldNames::None, ""), (DifFieldNames::None, ""), (DifFieldNames::None, ""));
-
         return Dif {
             dif_name: None,
 
