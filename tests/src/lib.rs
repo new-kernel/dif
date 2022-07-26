@@ -2,11 +2,12 @@
 mod conversion_tests {
     use dif::{to_DifFieldNames, DIF_FIELD_NAMES, DifFieldNames};
 
-    const DIF_FIELD_NAMES_STR: &[&'static str; 19] = &[
+    const DIF_FIELD_NAMES_STR: &[&'static str; 21] = &[
         "None",
         "DifName",
         "DeviceName",
         "BootMethod",
+        "DisableWDT",
         "PeripheralAddress",
         "SocName",
         "AllocMemory",
@@ -21,6 +22,7 @@ mod conversion_tests {
         "InitFs",
         "InitNet",
         "ShutdownOnPanic",
+        "RestartOnPanic",
         "DisableIrqsOnPanic",
     ];
 

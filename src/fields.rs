@@ -12,11 +12,12 @@ pub fn to_DifFieldNames(str: &'static str) -> DifFieldNames {
     return DifFieldNames::None;
 }
 
-pub const DIF_FIELD_NAMES: &'static [DifFieldNames; 19] = &[
+pub const DIF_FIELD_NAMES: &'static [DifFieldNames; 21] = &[
     DifFieldNames::None,
     DifFieldNames::DifName,
     DifFieldNames::DeviceName,
     DifFieldNames::BootMethod,
+    DifFieldNames::DisableWDT,
     DifFieldNames::PeripheralAddress,
     DifFieldNames::SocName,
     DifFieldNames::AllocMemory,
@@ -31,6 +32,7 @@ pub const DIF_FIELD_NAMES: &'static [DifFieldNames; 19] = &[
     DifFieldNames::InitFs,
     DifFieldNames::InitNet,
     DifFieldNames::ShutdownOnPanic,
+    DifFieldNames::RestartOnPanic,
     DifFieldNames::DisableIrqsOnPanic,
 ];
 
@@ -40,58 +42,96 @@ pub enum DifFieldNames {
     /// Empty line. This line's value doesn't matter.
     None,
 
-    /// The name of the file. This line's value is a string.
+    /// The name of the file, (``"device.dif"``).
+    /// This line's value is a string.
     DifName,
 
-    /// Name of the device. This line's value is a string.
+    /// Name of the device, (``"Device123x"``).
+    /// This line's value is a string.
     DeviceName,
 
-    /// Name of the boot method/loader. This line's value is a string.
+    /// Name of the boot method, (``"UEFI"``) or (``GPIO Boot``).
+    /// This line's value is a string.
     BootMethod,
 
-    /// The peripheral base address. This line's value should be a decimal/integer of the address.
+    /// Disable a WatchDog Timer. (``"true"``) or (``"false``).
+    /// This line's value is a boolean.
+    DisableWDT,
+
+    /// The peripheral base address, (``"12340"``).
+    /// This can be converted into a pointer by:
+    /// ```rust
+    /// let peripherals = DIF.get(DifFieldNames::PeripheralAddress).parse::<u32>().unwrap();
+    /// let peripheral_address = peripherals as *mut u32;
+    /// ```
+    /// Rust's ``parse()`` doesn't convert "x" to a decimal so the address can't be the actual
+    /// address.
+    ///
+    /// This line's value should be a decimal/integer of the address.
     PeripheralAddress,
 
-    /// The SOC's name. This line's value is a string.
+    /// The SOC's name, (``"SOC123"``).
+    /// This line's value is a string.
     SocName,
 
-    /// Allocate memory with the ``alloc`` library. This line's value is a boolean.
+    /// Allocate memory with the ``alloc`` library.
+    /// This line's value is a boolean.
     AllocMemory,
 
-    /// Enable serial I/O. This line's value is a boolean.
+    /// Enable serial I/O.
+    /// This line's value is a boolean.
     EnableSerial,
 
-    /// Enable a framebuffer. This line's value is a boolean.
+    /// Enable a framebuffer.
+    /// This line's value is a boolean.
     EnableFrameBuffer,
 
-    /// The main printing method. This line's value is a boolean.
+    /// The main printing method.
+    /// This line's value is a boolean.
     PrintingMethod,
 
-    /// The IRQ chip name. This line's value is a string.
+    /// The IRQ chip name.
+    /// This line's value is a string.
     IrqChip,
 
-    /// Enable device specific IRQs. This line's value is a boolean.
+    /// Enable device specific IRQs.
+    /// This line's value is a boolean.
     EnableDeviceIrqs,
 
-    /// Start a device specific kernel (used by Novusk). This line's value is a boolean.
+    /// Start a device specific kernel (used by Novusk).
+    /// This line's value is a boolean.
     DeviceSpecificKernel,
 
-    /// Start main kernel initialization (used by Novusk). This line's value is a boolean.
+    /// Start main kernel initialization (used by Novusk).
+    /// This line's value is a boolean.
     StartInit,
 
-    /// Initialize input. This line's value is a boolean.
+    /// Start a user interface.
+    /// This line's value is a boolean.
+    StartUser,
+
+    /// Initialize input.
+    /// This line's value is a boolean.
     InitInput,
 
-    /// Initialize filesystem. This line's value is a boolean.
+    /// Initialize filesystem.
+    /// This line's value is a boolean.
     InitFs,
 
-    /// Initialize networking. This line's value is a boolean.
+    /// Initialize networking.
+    /// This line's value is a boolean.
     InitNet,
 
-    /// Shutdown on panic. This line's value is a boolean.
+    /// Shutdown on panic.
+    /// This line's value is a boolean.
     ShutdownOnPanic,
 
-    /// Disable IRQs on panic. This line's value is a boolean.
+    /// Restart on panic.
+    /// This line's value is a boolean.
+    RestartOnPanic,
+
+    /// Disable IRQs on panic.
+    /// This line's value is a boolean.
     DisableIrqsOnPanic,
 }
 
@@ -109,6 +149,7 @@ impl DifFieldNames {
             DifFieldNames::DifName => "DifName",
             DifFieldNames::DeviceName => "DeviceName",
             DifFieldNames::BootMethod => "BootMethod",
+            DifFieldNames::DisableWDT => "DisableWDT",
             DifFieldNames::PeripheralAddress => "PeripheralAddress",
             DifFieldNames::SocName => "SocName",
             DifFieldNames::AllocMemory => "AllocMemory",
@@ -119,10 +160,12 @@ impl DifFieldNames {
             DifFieldNames::EnableDeviceIrqs => "EnableDeviceIrqs",
             DifFieldNames::DeviceSpecificKernel => "DeviceSpecificKernel",
             DifFieldNames::StartInit => "StartInit",
+            DifFieldNames::StartUser => "StartUser",
             DifFieldNames::InitInput => "InitInput",
             DifFieldNames::InitFs => "InitFs",
             DifFieldNames::InitNet => "InitNet",
             DifFieldNames::ShutdownOnPanic => "ShutdownOnPanic",
+            DifFieldNames::RestartOnPanic => "RestartOnPanic",
             DifFieldNames::DisableIrqsOnPanic => "DisableIrqsOnPanic",
         };
     }

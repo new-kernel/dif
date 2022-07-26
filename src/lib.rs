@@ -1,5 +1,5 @@
 #![no_std]
-#[doc = include_str!("../README.md")]
+#![doc = include_str!("../README.md")]
 
 #[cfg(feature = "alloc")]
 #[macro_use] extern crate alloc;
@@ -43,9 +43,9 @@ pub struct Dif {
 }
 
 impl Dif {
-    /// Since there are only 19 field options this is the limit to how many lines this library will
+    /// Since there are only 21 field options this is the limit to how many lines this library will
     /// read.
-    pub const MAX_SIZE: usize = 19;
+    pub const MAX_SIZE: usize = 21;
 
     /// Creates a new ``Dif`` value.
     pub const fn new() -> Self {
