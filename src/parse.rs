@@ -14,6 +14,10 @@ impl Dif {
         for line_num in 0..file.len() {
             let line = Dif::get_dif_line(file[line_num]);
 
+            if line.0 == DifFieldNames::DifName {
+                dif.dif_name = Some(line.1)
+            }
+
             dif.dif_lines.push(line);
         }
 
@@ -49,9 +53,12 @@ impl Dif {
             }
         }
 
+        dif.dif_name = Some(dif.get(DifFieldNames::DifName));
+
         return dif;
     }
 
+    /// Reads static generated from [``difi``](todo) and returns it as a ``Dif``.
     pub fn parse(&self, file: &[(&'static str, &'static str)]) -> Dif {
         #[cfg(feature = "alloc")]
         return Dif::alloc_parse(file);

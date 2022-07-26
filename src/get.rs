@@ -4,7 +4,7 @@ impl Dif {
     #[cfg(feature = "alloc")]
     fn alloc_get(&self, field: DifFieldNames) -> &'static str {
         for i in 0..self.dif_lines.len() {
-            if self.dif_lines[i].0  == field {
+            if self.dif_lines[i].0 == field {
                 return  self.dif_lines[i].1;
             }
         }
@@ -15,7 +15,7 @@ impl Dif {
     #[cfg(not(feature = "alloc"))]
     fn no_alloc_get(&self, field: DifFieldNames) -> &'static str {
         for i in 0..Dif::MAX_SIZE {
-            match line_num {
+            match i {
                 0 => { return self.dif_lines.0.1 },
                 1 => { return self.dif_lines.1.1  },
                 2 => { return self.dif_lines.2.1 },
@@ -42,6 +42,7 @@ impl Dif {
         return "";
     }
 
+    /// Gets the value of the ``field`` argument.
     pub fn get(&self, field: DifFieldNames) -> &'static str {
         #[cfg(feature = "alloc")]
         return self.alloc_get(field);

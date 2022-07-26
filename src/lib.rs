@@ -1,4 +1,5 @@
 #![no_std]
+#[doc = include_str!("../README.md")]
 
 #[cfg(feature = "alloc")]
 #[macro_use] extern crate alloc;
@@ -10,11 +11,13 @@ pub mod parse;
 pub use fields::*;
 
 pub struct Dif {
+    /// The name of the DIF that's being used.
     pub dif_name: Option<&'static str>,
 
     #[cfg(feature = "alloc")]
     pub dif_lines: alloc::vec::Vec<DifLine>,
 
+    /// With the ``alloc`` feature enabled this field will be a ``Vec`` instead of a tuple.
     #[cfg(not(feature = "alloc"))]
     pub dif_lines: (
         DifLine,
@@ -44,6 +47,7 @@ impl Dif {
     /// read.
     pub const MAX_SIZE: usize = 19;
 
+    /// Creates a new ``Dif`` value.
     pub const fn new() -> Self {
         return Dif {
             dif_name: None,

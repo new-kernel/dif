@@ -2,9 +2,14 @@
 name = "dif"
 version = "0.1.0"
 description = "Device Information File, a library for reading .dif files into a Rust struct."
+readme = "README.md"
+documentation = "docs.rs/dif/latest/dif/"
+authors = ["The New Kernel Developers", "Nathan McMillan <nathanmcmillan54@gmail.com>"]
+license = "GPL-3.0"
 
 [workspace]
 members = [
+    "difi/",
     "tests/",
 ]
 

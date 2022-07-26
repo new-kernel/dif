@@ -1,5 +1,6 @@
 use core::fmt::{Debug, Formatter};
 
+/// This function turns an ``&str`` into a ``DifFieldNames`` variant.
 #[allow(non_snake_case)]
 pub fn to_DifFieldNames(str: &'static str) -> DifFieldNames {
     for i in 0..DIF_FIELD_NAMES.len() {
@@ -101,6 +102,7 @@ impl Debug for DifFieldNames {
 }
 
 impl DifFieldNames {
+    /// This converts a ``DifFieldNames`` into an ``&str`` value.
     pub fn to_str(&self) -> &str {
         return match self {
             DifFieldNames::None => "None",
