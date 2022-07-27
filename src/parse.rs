@@ -58,7 +58,7 @@ impl Dif {
         return dif;
     }
 
-    /// Reads static generated from [``difi``](docs.rs/difi/latest/difi) and returns it as a
+    /// Reads static generated from [``difi``](https://docs.rs/difi/latest/difi) and returns it as a
     /// ``Dif``.
     pub fn parse(&self, file: &[(&'static str, &'static str)]) -> Dif {
         #[cfg(feature = "alloc")]
