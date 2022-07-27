@@ -15,8 +15,10 @@ pub struct Dif {
     pub dif_name: Option<&'static str>,
 
     #[cfg(feature = "alloc")]
+    /// The lines in the Dif as a ``DifLine``.
     pub dif_lines: alloc::vec::Vec<DifLine>,
 
+    /// The lines in the Dif as a ``DifLine``.
     /// With the ``alloc`` feature enabled this field will be a ``Vec`` instead of a tuple.
     #[cfg(not(feature = "alloc"))]
     pub dif_lines: (
