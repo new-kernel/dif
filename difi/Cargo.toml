@@ -4,6 +4,6 @@ version = "0.1.0"
 edition = "2021"
 description = "DIF Include, a tool intended for build scripts to turn a dif file into a Rust static"
 readme = "README.md"
-documentation = "docs.rs/difi/latest/difi/"
+documentation = "https://docs.rs/difi/latest/difi/"
 authors = ["The New Kernel Developers", "Nathan McMillan <nathanmcmillan54@gmail.com>"]
 license = "GPL-3.0"
