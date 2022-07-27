@@ -7,7 +7,7 @@ const DIF_STATIC: &'static str = "#[no_mangle]\npub static DIF_FILE: &'static [(
 /// Creates a Rust file called ``dif.rs`` which has the DIF turned into a Rust static which can be
 /// turned into a [``Dif``](todo) value.
 pub fn add_dif(dif_path: &str) {
-    let dif = File::open(dif);
+    let dif = File::open(dif_path);
     let rust_dif = File::create("src/dif.rs"); // Should be included in lib.rs for device driver
 
     if dif.is_err() {

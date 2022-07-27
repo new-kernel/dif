@@ -13,7 +13,7 @@ documentation on how to write them.
 ---
 
 ``example.dif``:
-```toml
+```
 [
   ("DifFileName", "example.dif"),
 ]
