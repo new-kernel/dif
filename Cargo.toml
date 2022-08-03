@@ -1,6 +1,6 @@
 [package]
 name = "dif"
-version = "0.1.0"
+version = "0.1.1"
 description = "Device Information File, a library for reading .dif files into a Rust struct."
 readme = "README.md"
 documentation = "https://docs.rs/dif/latest/dif/"
