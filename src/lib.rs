@@ -40,7 +40,9 @@ pub struct Dif {
         DifLine,
         DifLine,
         DifLine,
-        DifLine
+        DifLine,
+        DifLine,
+        DifLine,
     ),
 }
 
@@ -59,6 +61,8 @@ impl Dif {
 
             #[cfg(not(feature = "alloc"))]
             dif_lines: (
+                (DifFieldNames::None, ""),
+                (DifFieldNames::None, ""),
                 (DifFieldNames::None, ""),
                 (DifFieldNames::None, ""),
                 (DifFieldNames::None, ""),
